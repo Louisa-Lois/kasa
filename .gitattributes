@@ -1,0 +1,16 @@
+# Normalise line endings. Without this, a file touched on Windows looks
+# fully rewritten to everyone else and merges become unreadable.
+* text=auto eol=lf
+
+*.java  text eol=lf
+*.md    text eol=lf
+*.txt   text eol=lf
+*.csv   text eol=lf
+*.xml   text eol=lf
+*.yml   text eol=lf
+*.sh    text eol=lf
+*.bat   text eol=crlf
+
+*.png   binary
+*.jpg   binary
+*.pdf   binary

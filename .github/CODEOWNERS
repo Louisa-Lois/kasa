@@ -1,0 +1,35 @@
+# When a pull request touches one of these files, GitHub automatically asks
+# its owner to review. Everyone listed must be a collaborator with write
+# access, or the line is silently ignored.
+#
+# Patterns are filenames rather than full paths, so they keep working whether
+# the sources sit in src/ or in src/main/java/ after the Maven move.
+
+# Cards and decks
+Card.java             @kodie003
+Word.java             @kodie003
+Phrase.java           @kodie003
+Deck.java             @kodie003
+DeckLibrary.java      @kodie003
+Language.java         @kodie003
+CardsAndDecksDemo.java @kodie003
+
+# Question types
+Question.java         @tayviah
+*Question.java        @tayviah
+
+# Quiz, scoring and spaced repetition
+QuizSession.java      @Louisa-Lois
+ScoreTracker.java     @Louisa-Lois
+ReviewScheduler.java  @Louisa-Lois
+
+# Saving, loading and the main window
+FileManager.java      @Geraldpkk
+FileManagerTest.java  @Geraldpkk
+FlashcardApp.java     @Geraldpkk
+Launcher.java         @Geraldpkk
+Screen.java           @Geraldpkk
+
+# Shared build and documentation — whoever is Integration Lead should look
+/pom.xml              @Louisa-Lois
+/.github/             @Louisa-Lois

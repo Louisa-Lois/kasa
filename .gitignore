@@ -1,2 +1,12 @@
 *.class
 decks_test_save.txt
+setup-kasa.sh
+out/
+bin/
+target/
+.idea/
+*.iml
+.vscode/
+.DS_Store
+Thumbs.db
+decks.txt
