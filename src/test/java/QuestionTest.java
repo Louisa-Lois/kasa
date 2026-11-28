@@ -3,6 +3,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 import org.junit.jupiter.api.Test;
 
 class QuestionTest {
@@ -116,6 +117,26 @@ class QuestionTest {
     void fillBlankRejectsPositionThatDoesNotExist() {
         assertThrows(IllegalArgumentException.class, () -> new FillBlankQuestion(name, 4));
         assertThrows(IllegalArgumentException.class, () -> new FillBlankQuestion(name, -1));
+    }
+
+    @Test
+    void fillBlankNeverShowsTheAnswerInTheEnglishContext() {
+        // the hidden word "Kofi" is also in the English: it must be masked there too
+        Phrase kofi = new Phrase("My name is Kofi", "Me din de Kofi", Language.TWI);
+        FillBlankQuestion q = new FillBlankQuestion(kofi, 3);
+        assertTrue(q.getPrompt().contains("(My name is ____)"));
+        for (int i = 0; i < kofi.getWordCount(); i++) {
+            String prompt = new FillBlankQuestion(kofi, i).getPrompt();
+            String answer = kofi.getWordAt(i);
+            assertFalse(Pattern.compile("(?<!\\p{L})" + Pattern.quote(answer) + "(?!\\p{L})",
+                    Pattern.CASE_INSENSITIVE).matcher(prompt).find(),
+                    "Answer \"" + answer + "\" leaked in: " + prompt);
+        }
+    }
+
+    @Test
+    void fillBlankKeepsTheEnglishWhenItDoesNotContainTheAnswer() {
+        assertTrue(new FillBlankQuestion(howAreYou, 0).getPrompt().contains("(How are you?)"));
     }
 
     @Test
